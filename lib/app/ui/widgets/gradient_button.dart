@@ -4,11 +4,12 @@ import 'package:sh_test/app/common/constant.dart';
 import 'package:sh_test/app/common/text_style.dart';
 
 class GradientButton extends StatelessWidget {
-  final String text;
   const GradientButton({
     Key? key,
     required this.text,
   }) : super(key: key);
+
+  final String text;
 
   @override
   Widget build(BuildContext context) {
@@ -17,20 +18,18 @@ class GradientButton extends StatelessWidget {
       child: Ink(
         padding: const EdgeInsets.all(kPadding * 0.4),
         decoration: BoxDecoration(
-          gradient: const LinearGradient(
-            colors: [
-              gradientColor1,
-              gradientColor2,
-            ],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ),
+          gradient: linearAppGradient,
           borderRadius: BorderRadius.circular(kRadiusCircle),
         ),
-        child: Text(
-          text,
-          style: textButton,
-          textAlign: TextAlign.center,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: kPadding,
+          ),
+          child: Text(
+            text,
+            style: textStyleButton,
+            textAlign: TextAlign.center,
+          ),
         ),
       ),
     );

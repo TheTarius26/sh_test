@@ -54,7 +54,7 @@ class EntryPage extends StatelessWidget {
             onTap: () {},
           ),
         ],
-        style: textBody,
+        style: textStyleBody,
       ),
     );
   }
@@ -63,7 +63,7 @@ class EntryPage extends StatelessWidget {
       {String? text, Color color = Colors.black, void Function()? onTap}) {
     return TextSpan(
       text: text,
-      style: textBody.copyWith(
+      style: textStyleBody.copyWith(
         fontSize: 10,
         fontWeight: FontWeight.w400,
         color: color,
@@ -76,7 +76,7 @@ class EntryPage extends StatelessWidget {
     return [
       Text(
         'One more step to access \nall the greatness',
-        style: textBody.copyWith(
+        style: textStyleBody.copyWith(
           fontSize: 14,
         ),
         textAlign: TextAlign.center,
@@ -84,7 +84,7 @@ class EntryPage extends StatelessWidget {
       const SizedBox(height: kPadding * 2),
       Text(
         'Let\'s log in or register',
-        style: textBody.copyWith(
+        style: textStyleBody.copyWith(
           fontSize: 12,
         ),
       ),
