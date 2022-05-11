@@ -25,7 +25,7 @@ class EntryPage extends StatelessWidget {
               const Spacer(),
               ...welcomeText(),
               const Spacer(flex: 1),
-              buttons(),
+              buttons(context),
               const Spacer(),
               terms(),
               const Spacer(flex: 2)
@@ -91,18 +91,24 @@ class EntryPage extends StatelessWidget {
     ];
   }
 
-  Row buttons() {
+  Row buttons(BuildContext context) {
     return Row(
-      children: const [
+      children: [
         Expanded(
           child: GradientButton(
             text: 'Login',
+            onPressed: () {
+              Navigator.pushNamed(context, '/login');
+            },
           ),
         ),
-        SizedBox(width: kPadding),
+        const SizedBox(width: kPadding),
         Expanded(
           child: GradientButton(
             text: 'Register',
+            onPressed: () {
+              Navigator.pushNamed(context, '');
+            },
           ),
         ),
       ],

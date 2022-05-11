@@ -20,9 +20,7 @@ class FieldForm extends StatelessWidget {
       children: [
         Text(
           label,
-          style: textStyleBody.copyWith(
-            fontSize: 12,
-          ),
+          style: textStyleBody.copyWith(fontSize: 12),
         ),
         const SizedBox(height: kPadding * 0.25),
         Container(
@@ -42,9 +40,8 @@ class FieldForm extends StatelessWidget {
               decoration: InputDecoration(
                 border: InputBorder.none,
                 hintText: hintText,
-                contentPadding: const EdgeInsets.symmetric(
-                  horizontal: kPadding * 0.5,
-                ),
+                contentPadding: const EdgeInsets.all(kPadding * 0.75),
+                isDense: true,
               ),
               style: textStyleBody.copyWith(fontSize: 12),
               validator: (value) {

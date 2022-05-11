@@ -7,19 +7,24 @@ class GradientButton extends StatelessWidget {
   const GradientButton({
     Key? key,
     required this.text,
+    required this.onPressed,
   }) : super(key: key);
 
   final String text;
+  final void Function()? onPressed;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
-      child: Ink(
-        padding: const EdgeInsets.all(kPadding * 0.4),
+      onTap: onPressed,
+      child: Container(
+        padding: const EdgeInsets.symmetric(
+          horizontal: kPadding * 0.75,
+          vertical: kPadding * 0.5,
+        ),
         decoration: BoxDecoration(
           gradient: linearAppGradient,
-          borderRadius: BorderRadius.circular(kRadiusCircle),
+          borderRadius: BorderRadius.circular(kRadiusCircle * 0.75),
         ),
         child: Padding(
           padding: const EdgeInsets.symmetric(

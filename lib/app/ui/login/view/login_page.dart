@@ -20,8 +20,8 @@ class LoginPage extends StatelessWidget {
           ),
           child: Column(
             children: [
-              appBar(),
-              content(),
+              appBar(context),
+              content(context),
             ],
           ),
         ),
@@ -29,56 +29,109 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  Expanded content() {
-    return Expanded(
+  Flexible content(BuildContext context) {
+    return Flexible(
       child: Container(
         padding: const EdgeInsets.all(kPadding),
-        // color: Colors.white,
+        color: Colors.white,
         child: Column(
           children: [
             const Spacer(),
-            Expanded(
-              child: Text(
-                'Log In',
-                style: textStyleTitle,
-              ),
-            ),
+            header(),
             const Spacer(),
-            Expanded(
-              flex: 5,
-              child: Form(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const FieldForm(
-                      label: 'Email',
-                      hintText: 'Example: budi_santoso@gmail.com',
-                    ),
-                    const SizedBox(height: kPadding * 0.5),
-                    const FieldForm(
-                      label: 'Password',
-                      hintText: 'Example: 821jsunc8s72h',
-                    ),
-                    forgotPassword(),
-                    const SizedBox(height: kPadding),
-                  ],
-                ),
-              ),
-            ),
-            const Spacer(),
-            Expanded(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  Expanded(
-                    child: GradientButton(text: 'Log In'),
-                  ),
-                ],
-              ),
-            ),
-            const Spacer(),
+            form(),
+            loginButton(context),
+            registerButton(),
+            needHelpButton(),
           ],
         ),
+      ),
+    );
+  }
+
+  Expanded header() {
+    return Expanded(
+      child: Text(
+        'Log In',
+        style: textStyleTitle,
+      ),
+    );
+  }
+
+  Expanded needHelpButton() {
+    return Expanded(
+      child: TextButton(
+        onPressed: () {},
+        style: TextButton.styleFrom(primary: primaryColor),
+        child: Text(
+          'Need Help?',
+          style: textStyleBody.copyWith(
+            color: Colors.black54,
+            fontSize: 10,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget form() {
+    return Form(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const FieldForm(
+            label: 'Email',
+            hintText: 'Example: budi_santoso@gmail.com',
+          ),
+          const SizedBox(height: kPadding * 0.5),
+          const FieldForm(
+            label: 'Password',
+            hintText: 'Example: 821jsunc8s72h',
+          ),
+          forgotPassword(),
+        ],
+      ),
+    );
+  }
+
+  Expanded registerButton() {
+    return Expanded(
+      child: TextButton(
+        onPressed: () {},
+        style: TextButton.styleFrom(
+          primary: primaryColor,
+          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+          alignment: Alignment.center,
+        ),
+        child: Text(
+          'Don\'t have an account yet? Register now, it\'s free!',
+          style: textStyleBody.copyWith(
+            fontSize: 10,
+            decoration: TextDecoration.underline,
+            fontStyle: FontStyle.italic,
+            color: Colors.black54,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Expanded loginButton(BuildContext context) {
+    return Expanded(
+      flex: 2,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            alignment: Alignment.center,
+            child: GradientButton(
+              text: 'Log In',
+              onPressed: () {
+                Navigator.pushReplacementNamed(context, '');
+              },
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -88,25 +141,29 @@ class LoginPage extends StatelessWidget {
       onPressed: () {},
       style: TextButton.styleFrom(
         padding: const EdgeInsets.all(0),
+        primary: primaryColor,
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
       ),
       child: Text(
         'Forgot Password?',
         style: textStyleBody.copyWith(
-          fontSize: 12,
+          fontSize: 10,
           fontStyle: FontStyle.italic,
         ),
       ),
     );
   }
 
-  Row appBar() {
+  Row appBar(BuildContext context) {
     return Row(
       children: [
         Expanded(
           child: Container(
             alignment: Alignment.centerLeft,
             child: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pop(context);
+              },
               icon: const Icon(
                 Icons.arrow_back_ios_new,
                 color: Colors.white70,
