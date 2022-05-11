@@ -107,7 +107,7 @@ class EntryPage extends StatelessWidget {
           child: GradientButton(
             text: 'Register',
             onPressed: () {
-              Navigator.pushNamed(context, '');
+              Navigator.pushNamed(context, '/register');
             },
           ),
         ),

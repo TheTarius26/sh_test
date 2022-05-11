@@ -3,6 +3,8 @@ import 'package:sh_test/app/common/color.dart';
 import 'package:sh_test/app/common/constant.dart';
 import 'package:sh_test/app/common/path.dart';
 import 'package:sh_test/app/common/text_style.dart';
+import 'package:sh_test/app/ui/register/view/register_page.dart';
+import 'package:sh_test/app/ui/widgets/entry_app_bar.dart';
 import 'package:sh_test/app/ui/widgets/field_form.dart';
 import 'package:sh_test/app/ui/widgets/gradient_button.dart';
 
@@ -20,7 +22,9 @@ class LoginPage extends StatelessWidget {
           ),
           child: Column(
             children: [
-              appBar(context),
+              const EntryAppBar(
+                enablePop: true,
+              ),
               content(context),
             ],
           ),
@@ -87,6 +91,7 @@ class LoginPage extends StatelessWidget {
           const FieldForm(
             label: 'Password',
             hintText: 'Example: 821jsunc8s72h',
+            isPassword: true,
           ),
           forgotPassword(),
         ],
@@ -151,35 +156,6 @@ class LoginPage extends StatelessWidget {
           fontStyle: FontStyle.italic,
         ),
       ),
-    );
-  }
-
-  Row appBar(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-          child: Container(
-            alignment: Alignment.centerLeft,
-            child: IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: const Icon(
-                Icons.arrow_back_ios_new,
-                color: Colors.white70,
-              ),
-              iconSize: 16,
-            ),
-          ),
-        ),
-        Expanded(
-          flex: 3,
-          child: Image.asset(
-            '$assetsImagePath/logo_white.png',
-          ),
-        ),
-        const Spacer()
-      ],
     );
   }
 }

@@ -6,6 +6,7 @@ import 'package:sh_test/app/common/text_style.dart';
 class FieldForm extends StatelessWidget {
   final String label, hintText;
   final bool isPassword;
+
   const FieldForm({
     Key? key,
     required this.label,
@@ -40,6 +41,10 @@ class FieldForm extends StatelessWidget {
               decoration: InputDecoration(
                 border: InputBorder.none,
                 hintText: hintText,
+                hintStyle: textStyleBody.copyWith(
+                  fontSize: 10,
+                  color: Colors.black38,
+                ),
                 contentPadding: const EdgeInsets.all(kPadding * 0.75),
                 isDense: true,
               ),
@@ -53,7 +58,7 @@ class FieldForm extends StatelessWidget {
                     return 'Password must be at least 6 characters';
                   }
                 }
-                if (!value.contains('@')) {
+                if (label.toLowerCase() == 'email' && !value.contains('@')) {
                   return 'Please enter a valid email';
                 }
                 return null;
