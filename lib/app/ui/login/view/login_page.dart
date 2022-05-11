@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sh_test/app/common/color.dart';
 import 'package:sh_test/app/common/constant.dart';
 import 'package:sh_test/app/common/path.dart';
 import 'package:sh_test/app/common/text_style.dart';
+import 'package:sh_test/app/enum/login_status.dart';
+import 'package:sh_test/app/ui/login/controller/login_controller.dart';
 import 'package:sh_test/app/ui/register/view/register_page.dart';
 import 'package:sh_test/app/ui/widgets/entry_app_bar.dart';
 import 'package:sh_test/app/ui/widgets/field_form.dart';
@@ -79,24 +82,29 @@ class LoginPage extends StatelessWidget {
   }
 
   Widget form() {
-    return Form(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const FieldForm(
-            label: 'Email',
-            hintText: 'Example: budi_santoso@gmail.com',
-          ),
-          const SizedBox(height: kPadding * 0.5),
-          const FieldForm(
-            label: 'Password',
-            hintText: 'Example: 821jsunc8s72h',
-            isPassword: true,
-          ),
-          forgotPassword(),
-        ],
-      ),
-    );
+    return Consumer<LoginController>(builder: (context, controller, child) {
+      return Form(
+        key: controller.formKey,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            FieldForm(
+              controller: controller.emailController,
+              label: 'Email',
+              hintText: 'Example: budi_santoso@gmail.com',
+            ),
+            const SizedBox(height: kPadding * 0.5),
+            FieldForm(
+              controller: controller.passwordController,
+              label: 'Password',
+              hintText: 'Example: 821jsunc8s72h',
+              isPassword: true,
+            ),
+            forgotPassword(),
+          ],
+        ),
+      );
+    });
   }
 
   Expanded registerButton() {
@@ -129,10 +137,27 @@ class LoginPage extends StatelessWidget {
         children: [
           Container(
             alignment: Alignment.center,
-            child: GradientButton(
-              text: 'Log In',
-              onPressed: () {
-                Navigator.pushReplacementNamed(context, '');
+            child: Consumer<LoginController>(
+              builder: (context, controller, child) {
+                return GradientButton(
+                  text: 'Log In',
+                  onPressed: () {
+                    if (controller.formKey.currentState!.validate()) {
+                      controller.login();
+                      Future.delayed(const Duration(seconds: 1));
+                      if (controller.loginStatus == LoginStatus.success) {
+                        Navigator.pushReplacementNamed(context, '/home');
+                      } else if (controller.loginStatus !=
+                          LoginStatus.loading) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(controller.loginErrorMessage),
+                          ),
+                        );
+                      }
+                    }
+                  },
+                );
               },
             ),
           ),

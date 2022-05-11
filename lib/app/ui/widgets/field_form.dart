@@ -6,11 +6,13 @@ import 'package:sh_test/app/common/text_style.dart';
 class FieldForm extends StatelessWidget {
   final String label, hintText;
   final bool isPassword;
+  final TextEditingController controller;
 
   const FieldForm({
     Key? key,
     required this.label,
     required this.hintText,
+    required this.controller,
     this.isPassword = false,
   }) : super(key: key);
 
@@ -38,6 +40,7 @@ class FieldForm extends StatelessWidget {
               ),
             ),
             child: TextFormField(
+              controller: controller,
               decoration: InputDecoration(
                 border: InputBorder.none,
                 hintText: hintText,
@@ -48,6 +51,7 @@ class FieldForm extends StatelessWidget {
                 contentPadding: const EdgeInsets.all(kPadding * 0.75),
                 isDense: true,
               ),
+              obscureText: isPassword,
               style: textStyleBody.copyWith(fontSize: 12),
               validator: (value) {
                 if (value == null || value.isEmpty) {
