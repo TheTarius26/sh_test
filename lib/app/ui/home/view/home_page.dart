@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sh_test/app/common/color.dart';
 import 'package:sh_test/app/common/constant.dart';
 import 'package:sh_test/app/common/text_style.dart';
+import 'package:sh_test/app/ui/widgets/app_calendar.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class HomePage extends StatelessWidget {
@@ -54,15 +55,7 @@ class HomePage extends StatelessWidget {
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(kRadiusCircle),
                 ),
-                child: TableCalendar(
-                  focusedDay: DateTime.now(),
-                  firstDay: DateTime.utc(2010, 10, 16),
-                  lastDay: DateTime.utc(2030, 3, 14),
-                  headerStyle: const HeaderStyle(
-                    formatButtonVisible: false,
-                    titleCentered: true,
-                  ),
-                ),
+                child: const AppCalendar(),
               )
             ],
           ),
