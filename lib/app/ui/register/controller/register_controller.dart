@@ -25,6 +25,8 @@ class RegisterController extends ChangeNotifier {
       : _userRepository = userRepository;
 
   /// Register a new user
+  /// If registration is successful, user will be logged in
+  /// If registration is failed, error message will be shown
   void register() async {
     try {
       registerStatus.add(RegisterStatus.loading);

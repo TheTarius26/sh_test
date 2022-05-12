@@ -21,6 +21,8 @@ class LoginController extends ChangeNotifier {
       : _userRepository = userRepository;
 
   /// Login the user with the given credentials
+  /// If login is successful, user will be logged in
+  /// If login is failed, error message will be shown
   void login() async {
     try {
       loginStatus.add(LoginStatus.loading);
