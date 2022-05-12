@@ -9,6 +9,6 @@ This Project is build for Pre-test of SuperHelper
 in This Project i'm using:
 
 - Model View Controller Architecture
-- Hive as Local Storage
+- Hive as NoSQL Local Storage
 - Provider as State Management
 - table_calendar as App Calendar
