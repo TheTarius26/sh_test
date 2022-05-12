@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:sh_test/app/common/color.dart';
 import 'package:sh_test/app/common/constant.dart';
-import 'package:sh_test/app/common/text_style.dart';
-import 'package:sh_test/app/ui/home/controller/home_controller.dart';
 import 'package:sh_test/app/ui/home/view/widgets/current_date_text.dart';
 import 'package:sh_test/app/ui/home/view/widgets/home_greeting.dart';
 import 'package:sh_test/app/ui/home/view/widgets/logout_button.dart';

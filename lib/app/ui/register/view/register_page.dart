@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:sh_test/app/common/color.dart';
 import 'package:sh_test/app/common/constant.dart';
 import 'package:sh_test/app/common/text_style.dart';
-import 'package:sh_test/app/ui/register/controller/register_controller.dart';
 import 'package:sh_test/app/ui/register/view/widgets/register_button.dart';
 import 'package:sh_test/app/ui/register/view/widgets/register_form.dart';
 import 'package:sh_test/app/ui/widgets/entry_app_bar.dart';
-import 'package:sh_test/app/ui/widgets/field_form.dart';
 import 'package:sh_test/app/ui/widgets/need_help_button.dart';
 
 class RegisterPage extends StatelessWidget {

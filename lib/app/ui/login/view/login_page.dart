@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:sh_test/app/common/color.dart';
 import 'package:sh_test/app/common/constant.dart';
 import 'package:sh_test/app/common/text_style.dart';
-import 'package:sh_test/app/ui/login/controller/login_controller.dart';
-import 'package:sh_test/app/ui/login/view/widgets/forgot_password.dart';
 import 'package:sh_test/app/ui/login/view/widgets/login_button.dart';
 import 'package:sh_test/app/ui/login/view/widgets/login_form.dart';
 import 'package:sh_test/app/ui/login/view/widgets/text_register_button.dart';
 import 'package:sh_test/app/ui/widgets/entry_app_bar.dart';
-import 'package:sh_test/app/ui/widgets/field_form.dart';
 import 'package:sh_test/app/ui/widgets/need_help_button.dart';
 
 class LoginPage extends StatelessWidget {
