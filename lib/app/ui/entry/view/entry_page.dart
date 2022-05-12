@@ -1,12 +1,9 @@
-import 'dart:ui';
-
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:sh_test/app/common/color.dart';
 import 'package:sh_test/app/common/constant.dart';
-import 'package:sh_test/app/common/path.dart';
 import 'package:sh_test/app/common/text_style.dart';
-import 'package:sh_test/app/ui/widgets/gradient_button.dart';
+import 'package:sh_test/app/ui/entry/view/widgets/agreement_text.dart';
+import 'package:sh_test/app/ui/entry/view/widgets/entry_buttons.dart';
+import 'package:sh_test/app/ui/entry/view/widgets/logo.dart';
 
 class EntryPage extends StatelessWidget {
   const EntryPage({Key? key}) : super(key: key);
@@ -21,54 +18,18 @@ class EntryPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Spacer(),
-              logo(),
+              const Logo(),
               const Spacer(),
               ...welcomeText(),
               const Spacer(flex: 1),
-              buttons(context),
+              const EntryButtons(),
               const Spacer(),
-              terms(),
+              const AgreementText(),
               const Spacer(flex: 2)
             ],
           ),
         ),
       ),
-    );
-  }
-
-  RichText terms() {
-    return RichText(
-      textAlign: TextAlign.center,
-      text: TextSpan(
-        children: [
-          termsSpan(text: 'By registering, I am aware and understand the\n'),
-          termsSpan(
-            text: 'Privacy Policy',
-            color: primaryColor,
-            onTap: () {},
-          ),
-          termsSpan(text: ' and '),
-          termsSpan(
-            text: 'Terms & Conditions',
-            color: primaryColor,
-            onTap: () {},
-          ),
-        ],
-        style: textStyleBody,
-      ),
-    );
-  }
-
-  TextSpan termsSpan(
-      {String? text, Color color = Colors.black, void Function()? onTap}) {
-    return TextSpan(
-      text: text,
-      style: textStyleBody.copyWith(
-        fontSize: 10,
-        fontWeight: FontWeight.w400,
-        color: color,
-      ),
-      recognizer: TapGestureRecognizer()..onTap = onTap,
     );
   }
 
@@ -89,38 +50,5 @@ class EntryPage extends StatelessWidget {
         ),
       ),
     ];
-  }
-
-  Row buttons(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-          child: GradientButton(
-            text: 'Login',
-            onPressed: () {
-              Navigator.pushNamed(context, '/login');
-            },
-          ),
-        ),
-        const SizedBox(width: kPadding),
-        Expanded(
-          child: GradientButton(
-            text: 'Register',
-            onPressed: () {
-              Navigator.pushNamed(context, '/register');
-            },
-          ),
-        ),
-      ],
-    );
-  }
-
-  Container logo() {
-    return Container(
-      margin: const EdgeInsets.only(top: kPadding),
-      padding: const EdgeInsets.all(kPadding),
-      width: double.infinity,
-      child: Image.asset('$assetsImagePath/logo.png'),
-    );
   }
 }

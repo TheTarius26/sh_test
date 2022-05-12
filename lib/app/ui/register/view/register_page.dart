@@ -4,9 +4,11 @@ import 'package:sh_test/app/common/color.dart';
 import 'package:sh_test/app/common/constant.dart';
 import 'package:sh_test/app/common/text_style.dart';
 import 'package:sh_test/app/ui/register/controller/register_controller.dart';
+import 'package:sh_test/app/ui/register/view/widgets/register_button.dart';
+import 'package:sh_test/app/ui/register/view/widgets/register_form.dart';
 import 'package:sh_test/app/ui/widgets/entry_app_bar.dart';
 import 'package:sh_test/app/ui/widgets/field_form.dart';
-import 'package:sh_test/app/ui/widgets/gradient_button.dart';
+import 'package:sh_test/app/ui/widgets/need_help_button.dart';
 
 class RegisterPage extends StatelessWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -31,25 +33,13 @@ class RegisterPage extends StatelessWidget {
                   color: Colors.white,
                   child: Column(
                     children: [
-                      Text(
-                        'Register',
-                        style: textStyleTitle,
-                      ),
+                      header(),
                       const Spacer(),
-                      form(),
+                      const RegisterForm(),
                       const SizedBox(height: kPadding * 0.5),
                       registerButton(),
                       const Spacer(),
-                      TextButton(
-                        onPressed: () {},
-                        child: Text(
-                          'Need Help?',
-                          style: textStyleBody.copyWith(
-                            fontSize: 10,
-                            color: Colors.black,
-                          ),
-                        ),
-                      )
+                      const NeedHelpButton(),
                     ],
                   ),
                 ),
@@ -62,58 +52,15 @@ class RegisterPage extends StatelessWidget {
   }
 
   Expanded registerButton() {
-    return Expanded(
-      child: Center(
-        child: Consumer<RegisterController>(
-          builder: (context, controller, child) {
-            return GradientButton(
-              text: 'Next',
-              onPressed: () {
-                if (controller.formKey.currentState!.validate()) {
-                  controller.register();
-                  Navigator.pushNamed(context, '/login');
-                }
-              },
-            );
-          },
-        ),
-      ),
+    return const Expanded(
+      child: RegisterButton(),
     );
   }
 
-  Consumer form() {
-    return Consumer<RegisterController>(builder: (context, controller, child) {
-      return Form(
-        key: controller.formKey,
-        child: Column(
-          children: [
-            FieldForm(
-              controller: controller.firstNameController,
-              label: 'Your First Name',
-              hintText: 'Example: Budi',
-            ),
-            const SizedBox(height: kPadding * 0.5),
-            FieldForm(
-              controller: controller.lastNameController,
-              label: 'Your Last Name',
-              hintText: 'Example: Santoso',
-            ),
-            const SizedBox(height: kPadding * 0.5),
-            FieldForm(
-              controller: controller.emailController,
-              label: 'Email',
-              hintText: 'Example: Budi_santoso@gmail.com',
-            ),
-            const SizedBox(height: kPadding * 0.5),
-            FieldForm(
-              controller: controller.passwordController,
-              label: 'Password',
-              hintText: 'Example: as73savoier2',
-              isPassword: true,
-            ),
-          ],
-        ),
-      );
-    });
+  Text header() {
+    return Text(
+      'Register',
+      style: textStyleTitle,
+    );
   }
 }

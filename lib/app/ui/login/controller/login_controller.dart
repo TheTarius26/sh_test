@@ -20,6 +20,7 @@ class LoginController extends ChangeNotifier {
   LoginController(UserRepository userRepository)
       : _userRepository = userRepository;
 
+  /// Login the user with the given credentials
   void login() async {
     try {
       loginStatus.add(LoginStatus.loading);

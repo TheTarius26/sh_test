@@ -15,10 +15,12 @@ class HomeController extends ChangeNotifier {
     });
   }
 
+  /// Logout the current logged in user
   void logout() async {
     await _userRepository.logout();
   }
 
+  /// get logged in user info
   void getUser() async {
     user = await _userRepository.getLoggedUser();
     notifyListeners();
