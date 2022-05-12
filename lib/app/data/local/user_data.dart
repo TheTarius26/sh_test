@@ -10,7 +10,11 @@ class UserData {
 
     User? user;
     if (userList.isNotEmpty) {
-      user = userList.firstWhere((user) => user!.email == email);
+      try {
+        user = userList.firstWhere((user) => user!.email == email);
+      } catch (e) {
+        throw UserException('User not found');
+      }
     }
 
     if (user != null) {

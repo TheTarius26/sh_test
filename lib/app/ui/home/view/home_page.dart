@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sh_test/app/common/color.dart';
 import 'package:sh_test/app/common/constant.dart';
 import 'package:sh_test/app/common/text_style.dart';
+import 'package:sh_test/app/ui/home/controller/home_controller.dart';
 import 'package:sh_test/app/ui/widgets/app_calendar.dart';
-import 'package:table_calendar/table_calendar.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -24,19 +25,31 @@ class HomePage extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    'Hi, Rhaka',
-                    style: textStyleTitle.copyWith(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                        fontSize: 24),
+                  Consumer<HomeController>(
+                    builder: (context, controller, _) {
+                      return Text(
+                        'Hi, ${controller.user?.firstName ?? 'Guest'}',
+                        style: textStyleTitle.copyWith(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                          fontSize: 24,
+                        ),
+                      );
+                    },
                   ),
-                  IconButton(
-                    icon: const Icon(
-                      Icons.logout,
-                      color: Colors.white,
-                    ),
-                    onPressed: () {},
+                  Consumer<HomeController>(
+                    builder: (context, controller, child) {
+                      return IconButton(
+                        icon: const Icon(
+                          Icons.logout,
+                          color: Colors.white,
+                        ),
+                        onPressed: () {
+                          controller.logout();
+                          Navigator.pushReplacementNamed(context, '/login');
+                        },
+                      );
+                    },
                   ),
                 ],
               ),

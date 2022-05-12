@@ -29,7 +29,11 @@ final Map<String, Widget Function(BuildContext)> routes = {
         child: const RegisterPage(),
       ),
   '/home': (context) => ChangeNotifierProvider(
-        create: (context) => HomeController(),
+        create: (context) => HomeController(
+          UserRepository(
+            UserData(),
+          ),
+        ),
         child: const HomePage(),
       ),
 };

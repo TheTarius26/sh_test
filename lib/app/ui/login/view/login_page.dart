@@ -6,6 +6,7 @@ import 'package:sh_test/app/common/path.dart';
 import 'package:sh_test/app/common/text_style.dart';
 import 'package:sh_test/app/enum/login_status.dart';
 import 'package:sh_test/app/ui/login/controller/login_controller.dart';
+import 'package:sh_test/app/ui/login/widgets/login_button.dart';
 import 'package:sh_test/app/ui/register/view/register_page.dart';
 import 'package:sh_test/app/ui/widgets/entry_app_bar.dart';
 import 'package:sh_test/app/ui/widgets/field_form.dart';
@@ -130,38 +131,10 @@ class LoginPage extends StatelessWidget {
   }
 
   Expanded loginButton(BuildContext context) {
-    return Expanded(
+    return const Expanded(
       flex: 2,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            alignment: Alignment.center,
-            child: Consumer<LoginController>(
-              builder: (context, controller, child) {
-                return GradientButton(
-                  text: 'Log In',
-                  onPressed: () {
-                    if (controller.formKey.currentState!.validate()) {
-                      controller.login();
-                      Future.delayed(const Duration(seconds: 1));
-                      if (controller.loginStatus == LoginStatus.success) {
-                        Navigator.pushReplacementNamed(context, '/home');
-                      } else if (controller.loginStatus !=
-                          LoginStatus.loading) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text(controller.loginErrorMessage),
-                          ),
-                        );
-                      }
-                    }
-                  },
-                );
-              },
-            ),
-          ),
-        ],
+      child: Center(
+        child: LoginButton(),
       ),
     );
   }
