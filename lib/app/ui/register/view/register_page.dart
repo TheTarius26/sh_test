@@ -33,6 +33,7 @@ class RegisterPage extends StatelessWidget {
                   color: Colors.white,
                   child: Column(
                     children: [
+                      const Spacer(),
                       header(),
                       const Spacer(),
                       const RegisterForm(),

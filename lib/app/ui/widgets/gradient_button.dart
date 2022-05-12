@@ -19,8 +19,8 @@ class GradientButton extends StatelessWidget {
       onTap: onPressed,
       child: Container(
         padding: const EdgeInsets.symmetric(
-          horizontal: kPadding * 0.75,
-          vertical: kPadding * 0.5,
+          horizontal: kPadding,
+          vertical: kPadding,
         ),
         decoration: BoxDecoration(
           gradient: linearAppGradient,

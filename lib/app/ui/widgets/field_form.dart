@@ -23,7 +23,7 @@ class FieldForm extends StatelessWidget {
       children: [
         Text(
           label,
-          style: textStyleBody.copyWith(fontSize: 12),
+          style: textStyleBody.copyWith(fontSize: 14),
         ),
         const SizedBox(height: kPadding * 0.25),
         Container(
@@ -45,14 +45,14 @@ class FieldForm extends StatelessWidget {
                 border: InputBorder.none,
                 hintText: hintText,
                 hintStyle: textStyleBody.copyWith(
-                  fontSize: 10,
+                  fontSize: 14,
                   color: Colors.black38,
                 ),
                 contentPadding: const EdgeInsets.all(kPadding * 0.75),
                 isDense: true,
               ),
               obscureText: isPassword,
-              style: textStyleBody.copyWith(fontSize: 12),
+              style: textStyleBody.copyWith(fontSize: 14),
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'Please enter your $label';
